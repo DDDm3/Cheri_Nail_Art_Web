@@ -33,6 +33,7 @@ Nail_web/
     |   |-- utils.ts           # Hàm tiện ích (đánh số, chuẩn hoá chuỗi tìm kiếm)
     |   |-- hooks/usePage.ts   # Router tối giản: trang chủ và /services
     |   |-- components/        # Mỗi section một component
+    |   |-- fonts.ts           # Nạp font Fraunces (tiêu đề) và Nunito Sans (nội dung)
     |   |-- main.tsx           # Điểm khởi chạy React
     |   `-- styles.css         # Style của website
     |-- public/                # Copy nguyên vào bản build: ảnh, favicon, robots.txt,

@@ -12,6 +12,13 @@
        clamp(tối thiểu, công thức, tối đa). Các bậc nội dung tăng dần từ cỡ
        mobile (375px) lên cỡ laptop (từ 1440px trở lên) để dễ đọc trên màn
        hình 14–15.6 inch. Không dùng cỡ chữ ngoài thang này. */
+    /* Font (nạp trong fonts.ts): Fraunces cho tiêu đề, Nunito Sans cho nội dung.
+       Trục SOFT của Fraunces bo tròn nét chữ cho cảm giác mềm. */
+    --font-display: "Fraunces Variable", Georgia, serif;
+    --font-body: "Nunito Sans Variable", "Segoe UI", system-ui, sans-serif;
+    --font-display-weight: 400;
+    --font-display-settings: "SOFT" 100, "WONK" 0;
+
     --fs-xs: clamp(.75rem, .706rem + .188vw, .875rem);     /* 12–14px: nhãn, meta, nút nhỏ */
     --fs-sm: clamp(.875rem, .809rem + .282vw, 1.0625rem);  /* 14–17px: chữ phụ, nút, menu, review */
     --fs-base: clamp(1rem, .934rem + .282vw, 1.1875rem);   /* 16–19px: đoạn văn */
@@ -22,7 +29,7 @@
     --fs-3xl: clamp(3rem, 1.5rem + 5vw, 5.75rem);      /* 48–92px: tiêu đề trang */
     --fs-display: clamp(4.5rem, 3rem + 4vw, 6.25rem);  /* 72–100px: điểm review */
     color: var(--cherry-dark);
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-body);
     font-synthesis: none;
     background: var(--paper)
 }
@@ -64,6 +71,17 @@ img {
 a {
     color: inherit;
     text-decoration: none
+}
+
+/* Tiêu đề phụ cũng dùng font tiêu đề. */
+.member-body h3,
+.service-row h3,
+.notice-body h2,
+.review-dialog-body strong,
+.announcements-panel strong,
+.post h3 {
+    font-family: var(--font-display);
+    font-variation-settings: var(--font-display-settings)
 }
 
 /* Viền focus rõ ràng cho người dùng bàn phím. */
@@ -117,7 +135,9 @@ a {
     align-items: center;
     gap: 11px;
     cursor: pointer;
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-lg);
     white-space: nowrap
 }
@@ -389,7 +409,8 @@ a {
 .hero-content {
     position: relative;
     z-index: 2;
-    width: min(610px, 48vw);
+    /* Đủ rộng để tiêu đề (font Fraunces) nằm trên 2 dòng ở laptop/tablet. */
+    width: min(680px, 60vw);
     margin-left: 9vw;
     padding-top: clamp(100px, 15vh, 165px)
 }
@@ -404,10 +425,11 @@ a {
 }
 
 .hero-content h1 {
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-3xl);
     line-height: .97;
-    font-weight: 400;
     margin: 24px 0 28px
 }
 
@@ -486,9 +508,10 @@ a {
 
 .section-heading h2,
 .team-copy h2 {
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-2xl);
-    font-weight: 400;
     line-height: 1.04;
     margin: 14px 0 18px
 }
@@ -538,13 +561,16 @@ a {
 .service-number {
     margin-top: 20px;
     color: var(--cherry-soft);
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-md)
 }
 
 .service-card h3 {
-    font-family: Times New Roman, Times, serif;
-    font-weight: 400;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-lg);
     margin: 8px 0 7px
 }
@@ -586,8 +612,9 @@ a {
 
 .service-page-hero h1 {
     margin: 0 0 14px;
-    font-family: Times New Roman, Times, serif;
-    font-weight: 400;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-3xl);
     line-height: 1
 }
@@ -639,9 +666,10 @@ a {
 
 .service-group-title {
     margin: 8px 0 18px;
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-xl);
-    font-weight: 400
 }
 
 .service-row {
@@ -732,9 +760,10 @@ a {
 }
 
 .reviews-summary h2 {
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-display);
-    font-weight: 400;
     margin: 18px 0 4px;
     line-height: 1
 }
@@ -1075,11 +1104,14 @@ a {
     bottom: 0;
     background: #fffdf9e8;
     padding: 14px 17px;
-    font-family: Times New Roman, Times, serif
+    font-family: var(--font-display);
+    font-variation-settings: var(--font-display-settings)
 }
 
 .gallery-item figcaption span {
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     color: var(--cherry-soft);
     margin-right: 12px;
     font-size: var(--fs-xs)
@@ -1299,9 +1331,10 @@ a {
 }
 
 .post h3 {
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-lg);
-    font-weight: 400;
     line-height: 1.25;
     margin: 12px 0
 }
@@ -1357,7 +1390,9 @@ a {
 
 .footer-brand p {
     margin-left: 50px;
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-md)
 }
 
@@ -1457,9 +1492,10 @@ a {
 }
 
 .search-panel h2 {
-    font-family: Times New Roman, Times, serif;
+    font-family: var(--font-display);
+    font-weight: var(--font-display-weight);
+    font-variation-settings: var(--font-display-settings);
     font-size: var(--fs-2xl);
-    font-weight: 400;
     margin: 16px 0 35px
 }
 
