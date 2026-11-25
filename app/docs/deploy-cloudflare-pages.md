@@ -62,7 +62,7 @@ Cloudflare sẽ chỉ cách đổi nameserver hoặc thêm bản ghi CNAME ở n
 
 - [ ] Mở trang chủ, bấm **Services** rồi tải lại trang `/services`: phải hiện bảng giá, không lỗi 404.
 - [ ] Bấm một nút **Book**: hiện hộp thoại Notice, bấm **I understand** mở trang GlossGenius.
-- [ ] Chuông thông báo: thêm một dòng `yes` cho hôm nay trong Google Sheet, đợi ~5 phút, tải lại trang.
+- [ ] Chuông thông báo: thêm một dòng `yes` cho hôm nay trong Google Sheet, đợi ~5 phút, tải lại trang. Cách dùng sheet: `app/docs/announcements-guide.md`.
 - [ ] Kiểm tra header bảo mật tại https://securityheaders.com (nhập tên miền).
 - [ ] Đổi `contact.website` trong `app/src/content.ts` thành tên miền mới.
 - [ ] Cập nhật link website trên Google Maps (Google Business Profile), Facebook, Instagram và GlossGenius.

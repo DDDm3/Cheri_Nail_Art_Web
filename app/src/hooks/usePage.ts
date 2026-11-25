@@ -11,7 +11,7 @@ const pageToPath: Record<Page, string> = { home: "/", services: "/services" };
  * tránh phải thêm thư viện router cho một site nhỏ.
  *
  * Khi deploy, host phải rewrite mọi đường dẫn về index.html
- * (xem README), nếu không tải lại trang /services sẽ bị 404.
+ * (đã cấu hình trong app/public/_redirects), nếu không tải lại trang /services sẽ bị 404.
  */
 export function usePage() {
   const [page, setPage] = useState<Page>(() => pathToPage(window.location.pathname));

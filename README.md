@@ -39,7 +39,7 @@ Nail_web/
     |   |                      # _redirects và _headers (Cloudflare Pages)
     |   `-- images/            # Ảnh WebP đã nén mà website sử dụng
     |-- design-source/images/  # Ảnh gốc: PNG, logo.svg, ảnh thợ (không được deploy)
-    |-- docs/                  # Mẫu Google Sheet thông báo, hướng dẫn deploy Cloudflare Pages
+    |-- docs/                  # Hướng dẫn: thông báo (Google Sheet) và deploy Cloudflare Pages
     |-- tsconfig.json          # Cấu hình TypeScript
     `-- vite.config.mjs        # Cấu hình Vite (gốc dự án = thư mục cha, public = app/public)
 ```

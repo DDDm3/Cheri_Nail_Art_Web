@@ -1,6 +1,6 @@
 // Thông báo của tiệm (nghỉ lễ, đổi giờ, khuyến mãi...).
 // Chủ tiệm sửa trong một Google Sheet đã "Publish to web" dạng CSV, website đọc
-// file CSV đó mỗi lần tải trang. Cách thiết lập: xem README, mục "Thông báo của tiệm".
+// file CSV đó mỗi lần tải trang. Cách thiết lập: xem app/docs/announcements-guide.md.
 
 export type Announcement = {
   id: string;

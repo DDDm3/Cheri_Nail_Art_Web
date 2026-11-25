@@ -30,7 +30,7 @@ export const contact = {
 
 /**
  * Thông báo của tiệm (chuông cạnh nút "Book now").
- * `csvUrl` là link CSV của Google Sheet sau khi "Publish to web" (xem README).
+ * `csvUrl` là link CSV của Google Sheet sau khi "Publish to web" (xem app/docs/announcements-guide.md).
  * Chỉ cần đặt một lần; sau đó chủ tiệm sửa thông báo ngay trong Google Sheet.
  * Có thể ghi đè bằng biến môi trường VITE_NOTICES_CSV_URL khi build.
  */
