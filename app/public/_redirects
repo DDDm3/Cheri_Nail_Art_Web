@@ -1,0 +1,4 @@
+# Cloudflare Pages: trang /services được điều hướng phía trình duyệt (React),
+# nên trả index.html khi khách mở thẳng hoặc tải lại /services.
+/services   /index.html   200
+/services/  /index.html   200

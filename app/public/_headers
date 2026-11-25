@@ -1,0 +1,20 @@
+# Cloudflare Pages: header bảo mật và cache cho toàn bộ website.
+# Content-Security-Policy chỉ cho phép tài nguyên của chính website, cộng với
+# Google Sheets (đọc thông báo của tiệm). Thêm dịch vụ bên ngoài mới (font, widget,
+# analytics...) thì phải thêm tên miền của dịch vụ đó vào đây, nếu không sẽ bị chặn.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://docs.google.com https://*.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+
+# File JS/CSS có mã băm trong tên (vd. index-s0LZtGaP.js), đổi nội dung là đổi tên,
+# nên cho trình duyệt cache lâu.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Ảnh: cache 1 ngày (ảnh có thể được thay mà giữ nguyên tên file).
+/images/*
+  Cache-Control: public, max-age=86400

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.npm-cache/
+.pnpm-store/
+
+*.log
+
+.env.local
+.claude/
+AGENTS.md
