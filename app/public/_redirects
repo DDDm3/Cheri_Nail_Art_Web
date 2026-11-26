@@ -1,4 +1,6 @@
-# Cloudflare Pages: trang /services được điều hướng phía trình duyệt (React),
-# nên trả index.html khi khách mở thẳng hoặc tải lại /services.
-/services   /index.html   200
-/services/  /index.html   200
+# Cloudflare Pages: cố ý KHÔNG có quy tắc nào.
+#
+# Website không có file 404.html, nên Pages tự coi đây là single-page app và trả
+# index.html (mã 200) cho mọi đường dẫn không có file thật, ví dụ /services.
+# Đừng thêm quy tắc kiểu "/services /index.html 200": Pages tự rút gọn
+# /index.html thành / nên quy tắc đó biến thành chuyển hướng 308 về trang chủ.

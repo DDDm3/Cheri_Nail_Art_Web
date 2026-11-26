@@ -11,7 +11,7 @@ và tên miền luôn thuộc về tiệm.
 
 | File | Tác dụng |
 |---|---|
-| `app/public/_redirects` | Mở thẳng hoặc tải lại `/services` không bị lỗi 404 |
+| `app/public/_redirects` | Cố ý để trống quy tắc: Pages tự trả `index.html` cho `/services` (xem ghi chú trong file) |
 | `app/public/_headers` | Header bảo mật (CSP, chống nhúng iframe, HSTS…) và cache cho file JS/CSS/ảnh |
 | `app/public/robots.txt` | Cho phép Google lập chỉ mục website |
 | `.node-version` | Cloudflare build bằng Node 22 |

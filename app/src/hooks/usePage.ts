@@ -11,7 +11,7 @@ const pageToPath: Record<Page, string> = { home: "/", services: "/services" };
  * tránh phải thêm thư viện router cho một site nhỏ.
  *
  * Khi deploy, host phải rewrite mọi đường dẫn về index.html
- * (đã cấu hình trong app/public/_redirects), nếu không tải lại trang /services sẽ bị 404.
+ * (Cloudflare Pages tự làm vì website không có 404.html; xem app/public/_redirects).
  */
 export function usePage() {
   const [page, setPage] = useState<Page>(() => pathToPage(window.location.pathname));
