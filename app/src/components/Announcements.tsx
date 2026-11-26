@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Bell, X } from "lucide-react";
-import { activeOn, fetchAnnouncements, todayIn, type Announcement } from "../announcements";
+import { activeOn, fetchAnnouncements, liveSheetCsvUrl, todayIn, type Announcement } from "../announcements";
 import { announcementsConfig } from "../content";
 
 // Ghi nhớ (trên trình duyệt của khách) những thông báo đã xem trong ngày,
@@ -47,9 +47,13 @@ export function Announcements() {
 
   // Tải thông báo từ Google Sheet; lỗi mạng thì im lặng coi như không có thông báo.
   useEffect(() => {
-    if (!announcementsConfig.csvUrl) return;
+    const { sheetId, gid, csvUrl } = announcementsConfig;
+    // Biến môi trường VITE_NOTICES_CSV_URL (dùng khi test) thay thế toàn bộ nguồn.
+    const override = import.meta.env.VITE_NOTICES_CSV_URL;
+    const sources = override ? [override] : [sheetId ? liveSheetCsvUrl(sheetId, gid) : "", csvUrl].filter(Boolean);
+    if (sources.length === 0) return;
     const controller = new AbortController();
-    fetchAnnouncements(announcementsConfig.csvUrl, announcementsConfig.dateOrder, controller.signal)
+    fetchAnnouncements(sources, announcementsConfig.dateOrder, controller.signal)
       .then((all) => {
         const current = activeOn(all, today);
         setItems(current);

@@ -35,8 +35,14 @@ export const contact = {
  * Có thể ghi đè bằng biến môi trường VITE_NOTICES_CSV_URL khi build.
  */
 export const announcementsConfig = {
+  // Đọc thẳng dữ liệu hiện tại của sheet (cập nhật gần như ngay khi chủ tiệm sửa).
+  // Lấy từ link sửa sheet: docs.google.com/spreadsheets/d/<sheetId>/edit#gid=<gid>.
+  // Sheet phải được "Publish to web" (hoặc chia sẻ "Anyone with the link can view").
+  sheetId: "1ZK4-8SBss_EftCVgoCeWZ2QZM-JJvB2qQAJdpZI0HTA",
+  gid: "26386886",
+  // Dự phòng: bản "Publish to web" dạng CSV. Bản này có thể chậm vài phút so với
+  // sheet thật (Google cập nhật từng máy chủ một), nên chỉ dùng khi cách trên lỗi.
   csvUrl:
-    (import.meta.env.VITE_NOTICES_CSV_URL as string | undefined) ||
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRaACabh7U5JkM1ELK5LLxpXXvfBtR3x2fuI-BZc_SojVjk-5I43tnKRADV1xjSUBUnu-JPNgrcAH54/pub?gid=26386886&single=true&output=csv",
   // Dickinson, ND dùng giờ miền núi (Mountain Time): "hôm nay" tính theo giờ tiệm.
   timeZone: "America/Denver",

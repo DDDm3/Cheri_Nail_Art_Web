@@ -150,13 +150,34 @@ export function activeOn(items: Announcement[], today: string): Announcement[] {
   return items.filter((item) => (!item.start || item.start <= today) && (!item.end || today <= item.end));
 }
 
+/** Link đọc thẳng dữ liệu hiện tại của sheet (Google Visualization API, xuất CSV). */
+export function liveSheetCsvUrl(sheetId: string, gid: string): string {
+  // headers=1: dòng 1 luôn là tên cột.
+  return `https://docs.google.com/spreadsheets/d/${encodeURIComponent(sheetId)}/gviz/tq?tqx=out:csv&headers=1&gid=${encodeURIComponent(gid)}`;
+}
+
+/**
+ * Tải thông báo, thử lần lượt từng nguồn: nguồn đầu lỗi thì dùng nguồn sau.
+ * cache: "no-store" để không dùng bản lưu tạm của trình duyệt.
+ */
 export async function fetchAnnouncements(
-  csvUrl: string,
+  urls: string[],
   slashOrder: "MDY" | "DMY",
   signal?: AbortSignal,
 ): Promise<Announcement[]> {
-  // cache: "no-store" để chủ tiệm sửa sheet xong, khách tải lại trang là thấy ngay.
-  const response = await fetch(csvUrl, { signal, cache: "no-store" });
-  if (!response.ok) throw new Error(`Announcements request failed: ${response.status}`);
-  return rowsToAnnouncements(parseCsv(await response.text()), slashOrder);
+  let lastError: unknown;
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { signal, cache: "no-store" });
+      if (!response.ok) throw new Error(`Announcements request failed: ${response.status}`);
+      const rows = parseCsv(await response.text());
+      // Nguồn trả về trang lỗi / đăng nhập thay vì CSV có dòng tiêu đề "show,...": thử nguồn sau.
+      if (!rows[0]?.some((cell) => cell.trim().toLowerCase() === "show")) throw new Error("Unexpected sheet format");
+      return rowsToAnnouncements(rows, slashOrder);
+    } catch (error) {
+      if (signal?.aborted) throw error;
+      lastError = error;
+    }
+  }
+  throw lastError ?? new Error("No announcement source configured");
 }
